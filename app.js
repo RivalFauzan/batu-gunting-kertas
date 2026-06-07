@@ -7,18 +7,15 @@ function getRandomInt(max) {
 }
 
 function getComputerChoice() {
-  if (getRandomInt(3) === 0) {
-    return "conputer = rock";
-  } else if (getRandomInt(3) === 1) {
-    return "computer = paper";
+  let randomNumber = getRandomInt(3);
+  if (randomNumber === 0) {
+    return "rock";
+  } else if (randomNumber === 1) {
+    return "scissors";
   } else {
-    return "computer = scissors";
+    return "paper";
   }
 }
-
-console.log(getComputerChoice());
-
-console.log(inputPrompt);
 
 function getHumanChoice() {
   if (inputPrompt.toLowerCase() === "batu") {
@@ -30,4 +27,23 @@ function getHumanChoice() {
   }
 }
 
-console.log(getHumanChoice());
+let humanSelection = getHumanChoice();
+let compuSelection = getComputerChoice();
+
+playRound(humanSelection, compuSelection);
+
+function playRound(humanChoice, computerChoice) {
+  if (humanChoice === computerChoice) {
+    console.log("draw both are : " + humanChoice);
+  } else if (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "scissors" && computerChoice === "paper") ||
+    (humanChoice === "paper" && computerChoice === "rock")
+  ) {
+    console.log("You win! " + humanChoice + " beats " + computerChoice);
+    humanScore++;
+  } else {
+    console.log("You lose " + computerChoice + " beats " + humanChoice);
+    computerScore++;
+  }
+}
